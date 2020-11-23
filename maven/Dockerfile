@@ -4,7 +4,7 @@ FROM maven:3.6.1-jdk-8-slim
 USER root
 
 RUN apt-get update && \
-    apk add -u libcurl curl \
+    apk add -u libcurl curl && \
     apt-get install -y \
         git \
         libfontconfig1 \
