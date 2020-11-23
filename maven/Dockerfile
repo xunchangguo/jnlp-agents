@@ -3,9 +3,10 @@ FROM jenkins/inbound-agent:alpine as jnlp
 FROM maven:3.6.1-jdk-8-slim
 USER root
 
-RUN apk update && apk add -u libcurl curl
 RUN apt-get update && \
     apt-get install -y \
+        libcurl \
+        curl \
         git \
         libfontconfig1 \
         libfreetype6
