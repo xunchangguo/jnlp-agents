@@ -3,8 +3,8 @@ FROM jenkins/inbound-agent:alpine as jnlp
 FROM maven:3.6.1-jdk-8-slim
 USER root
 
+RUN apk update && apk add -u libcurl curl
 RUN apt-get update && \
-    apk add -u libcurl curl && \
     apt-get install -y \
         git \
         libfontconfig1 \
