@@ -5,8 +5,6 @@ USER root
 
 RUN apt-get update && \
     apt-get install -y \
-        libcurl \
-        curl \
         git \
         libfontconfig1 \
         libfreetype6
