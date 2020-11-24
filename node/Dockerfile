@@ -3,7 +3,7 @@ FROM jenkins/inbound-agent:alpine as jnlp
 FROM node:alpine
 USER root
 
-RUN apk -U add openjdk8-jre
+RUN apk -U add openjdk8-jre libcurl curl
 
 # Install Docker client
 ARG DOCKER_VERSION=18.03.0-ce
