@@ -11,8 +11,8 @@ pipeline {
         cron('@daily')
     }
 
-    stages { 
-        stage('Build Only') {
+    stages {
+        stage('Build and Test') {
             when {
                 expression { !infra.isTrusted() }
             }
@@ -20,7 +20,7 @@ pipeline {
             parallel {
                 stage('Windows') {
                     agent {
-                        label "windock"
+                        label "docker-windows"
                     }
                     steps {
                         bat "powershell -File ./make.ps1 -Target build"
@@ -31,11 +31,14 @@ pipeline {
                         label "docker&&linux"
                     }
                     steps {
+                        sh "make lint"
                         sh "make build"
+                        sh "make test"
                     }
                 }
             }
         }
+
 
         stage('Build and Publish') {
             when {
@@ -45,7 +48,7 @@ pipeline {
             parallel {
                 stage('Windows') {
                     agent {
-                        label "windock"
+                        label "docker-windows"
                     }
                     steps {
                         withCredentials([[$class: 'ZipFileBinding',
