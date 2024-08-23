@@ -2,7 +2,7 @@ FROM jenkins/inbound-agent:alpine-jdk8 as jnlp
 
 FROM node:14.18-alpine
 
-RUN apk -U add openjdk8-jre git
+RUN apk -U add openjdk11-jre git
 
 # Install Docker client
 ARG DOCKER_VERSION=18.03.0-ce
